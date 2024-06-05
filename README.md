@@ -14,18 +14,12 @@ A simple and lightweight YouTube-style application, intended for close friends t
 - [Installation](#installation)
 - [Usage](#usage)
 - [Environment Variables](#environment-variables)
-- [Dependencies](#dependencies)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Database
 
-MongoDB is necessary for the application to work properly. Once installed, be sure to change the `DB_CONNECT` environment variable to the pre-configured or modified database API. You want to start the database before running the application.
+MongoDB is necessary for the application to work properly. Once installed, be sure to change the `DB_CONNECT` environment variable (in the `.env` file) to the pre-configured or modified database API. You want to start the database before running the application.
 
 ## Installation
-- external configuration:
-sinasofs
-- installation
 1. Install the necessary dependencies:
 ```bash
 npm install
@@ -35,44 +29,14 @@ npm install
 npm start
 ```
 
-## Usage
-To start the application, use:
-```bash
-npm start
-```
+You may want to use a process manager like [PM2](https://pm2.keymetrics.io/) to handle any case of process crush or anomaly. It is not strictly necessarily, but it's highly recommended in production.
 
 ## Environment Variables
-This application requires an `.env` file to run. The `.env` file should contain the following sensitive information:
-- `MONGO_URI`: MongoDB connection string
-- `PORT`: Port number for the application to run on (default is 3000)
-
-Example `.env` file:
-```
-MONGO_URI=mongodb://username:password@host:port/database
-PORT=3000
-```
-
-**Note:** Ensure that your `.env` file is not committed to version control as it contains sensitive information.
-
-## Dependencies
-- [Express](https://expressjs.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
-- [dotenv](https://www.npmjs.com/package/dotenv)
-
-For a full list of dependencies, refer to the `package.json` file.
-
-## Contributing
-We welcome contributions! Please follow these steps to contribute:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature/your-feature-name`).
-6. Open a pull request.
-
-Please ensure your code adheres to the project's coding standards and is properly tested.
+The `.env` file contains the following setup - you have full control of that - and the variables are needed for the application to work:
+- `PORT`: Port number for the application to run on (default, 8080)
+- `SESSION_STRING`: the string used in cookie generation and session creation (default, an auto-generated string)
+- `DB_CONNECT`: MongoDB connection string, in order to estabilish the connection betwenn the application and the DB (default, the common case)
+- `SECRET_KEY`: the secret passkey required in creating accounts, to prevent application from having undesired access. Make sure to keep it secret among your closest friends
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
