@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>BendaTube | Home</title>
+    <link rel="stylesheet" href="/static/css/root.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+    <script src="/static/js/index.js" defer></script>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left">
+            <a href="/"><img src="/static/img/bendatube.svg" class="logo"></a>
+        </div>
+        <div class="nav-left-mobile">
+            <a href="/"><img src="/static/img/home.svg" class="home-icon"></a>
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <form action="/" method="post">
+                    <input type="text" id="searchBar" placeholder="Cerca... (user: b1tch)" name="query" id="query" autocomplete="off" value="<%= query %>">
+                    <button class="search" type="submit"><img src="/static/img/search.svg"></button>
+                </form>
+            </div>
+        </div>
+        <div class="nav-right flex-div">
+            <button id="uploadButton" href="/upload">
+                <a href="/upload"></a>
+                <img class="upload-icon" src="/static/img/upload.svg">
+            </button>
+            <a class="user-profile flex-div" href="/profile"><img class="user-icon" src="/static/pfp/<%= user.PFP_path %> "><span><%= user.username %></span></a>
+        </div>
+    </nav>
+
+    <div class="videos">
+        <% videos.forEach((video) => { %>
+            <div class="video">
+                <a href="/videos/<%= video.id %>" class="thumbnail-a">
+                    <div class="tumb-container">
+                        <img class="thumbnail" src="/static/thumbnails/<%= video.thumbnail %>">
+                    </div>
+                </a>
+                <div class="user-info">
+                    <a href="/static/videos/<%= video.id %>" class="title-a">
+                        <img class="user-pfp" src="/static/pfp/<%= video.user.PFP_path %>">
+                        <div>
+                            <span><%= video.user.username %></span>
+                            <h1><%= video.title %></h1></a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <% }) %>
+    </div>   
+    
+</body>
+</html>

@@ -1,0 +1,5 @@
+/node_modules
+/static/thumbnails/*
+/static/pfp/*
+/static/videos/*
+!/static/pfp/miss_user_sad.png

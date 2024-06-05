@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BendaTube | Register</title>
+    <link rel="stylesheet" href="/public/css/root.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/favicon-16x16.png">
+    <link rel="manifest" href="/public/img/site.webmanifest">
+    <script src="/public/js/register.js" defer></script>
+</head>
+<body>
+    <div class="logo">
+        <img src="/public/img/bendatube.svg">
+        <!--<div class="bend"></div>-->
+    </div>
+
+    <div class="register-box">
+        <form action="/register" method="POST" enctype="multipart/form-data">
+            <h1>Registrati</h1>
+            
+            <div class="userdata">
+                <span id="error" class="error"> <%= error %> </span>
+                <div class="fields">
+                    <div class="field-container">
+                        <div class="field">
+                            <input type="text" id="username" name="username" class="credentials" autocomplete="off" spellcheck="false" placeholder="Username">
+                            <span id="limit"></span>
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <div class="field">
+                            <input type="password" id="password" name="password" class="credentials" placeholder="Password">
+                            <span id="limit"></span>
+                        </div>  
+                    </div>
+                    <input type="password" id="password2" name="password2" class="credentials" placeholder="Repeat Password">
+                    <input type="text" id="secretcode" name="secretcode" class="credentials" autocomplete="off" spellcheck="false" placeholder="SECRET CODE">
+                </div>
+                <div class="pfp-selector">
+                    <span class="pfp-tips">Formati supportati: .png, .jpg, .jpeg e .gif.<br>CSS raccoglierà solo il quadrato centrale dell'imamgine, indipendentemente dalle sue proporzioni.</span>
+                    <img src="https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg" id="pfp-preview" alt="">
+                    <input type="file" name="pfp" id="pfp-input">
+                </div>
+            </div>
+            <a class="register" href="/login">Log In</a>
+            <button type="submit" class="login">Register</button>
+        </form>
+    </div>
+
+    <footer>2022 - 2023 | BendaTube Team</footer>
+</body>
+</html>

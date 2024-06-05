@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title><%= doc.title %></title>
+    <link rel="stylesheet" href="/static/css/videopage.css">
+    <link rel="stylesheet" href="/static/css/root.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+    <script src="/static/js/videopage.js" defer></script>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left">
+            <a href="/"><img src="/static/img/bendatube.svg" class="logo"></a>
+        </div>
+        <div class="nav-left-mobile">
+            <a href="/"><img src="/static/img/home.svg" class="home-icon"></a>
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <form action="/" method="post">
+                    <input type="text" id="searchBar" placeholder="Cerca... (user: b1tch)" name="query" id="query" autocomplete="off" value="<%= query %>">
+                    <button class="search" type="submit"><img src="/static/img/search.svg"></button>
+                </form>
+            </div>
+        </div>
+        <div class="nav-right flex-div">
+            <button id="uploadButton" href="/upload">
+                <a href="/upload"></a>
+                <img class="upload-icon" src="/static/img/upload.svg">
+            </button>
+            <a class="user-profile flex-div" href="/profile"><img class="user-icon" src="/static/pfp/<%= user.PFP_path %> "><span><%= user.username %></span></a>
+        </div>
+    </nav>
+
+    <div class="container play-container">
+        <div class="row">
+            <div class="play-video">
+                <video controls preload="none">
+                    <source src="/static/videos/<%= doc.path %> " type="video/mp4">
+                </video>
+
+                <h2 class="title"><%= doc.title %></h2>
+                <div class="user-like-container">
+                    <div class="pfp-user flex-div">
+                        <img class="pfp" src="/static/pfp/<%= doc.user.PFP_path %>">
+                        <span class="vid-username"><%= doc.user.username %></span>
+                        <% if (user.username == doc.user.username) { %>
+                            <form action="?_method=DELETE" method="POST">
+                                <button id="delete-comment" class="flex-div" type="submit">
+                                    <img src="/static/img/deleteacc.svg">
+                                </button>
+                            </form>
+                        <% } %>
+                    </div>                
+
+                    <div class="flex-div heart-container">
+                        <label for="heart"><span><%= doc.hearts.length %></span></label>
+                        <% if (doc.hearts.includes(user._id)) { %> 
+                            <i class="fa fa-heart heart-icon"><input type="checkbox" id="heart" name="heart" checked></i>
+                        <% } else { %>  
+                            <i class="fa fa-heart-o heart-icon"><input type="checkbox" id="heart" name="heart"></i>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="play-vid-info">
+                    <p class="views-days"></p>
+                    <p class="desc" style="max-height: 100px;"><%= doc.desc %></p>
+                    <span class="espandi" onclick="espandi()">Espandi...</span>
+                </div>
+                <div class="comments">
+                    <% if (doc.comments.length == 1) { %> 
+                        <h4><%= doc.comments.length %> Commento</h4>
+                    <% } else { %> 
+                        <h4><%= doc.comments.length %> Commenti</h4>
+                    <% } %>
+                    <div class="add-comment">
+                        <img class="pfp" src="/static/pfp/<%= user.PFP_path %>">
+                        <div>
+                            <textarea type="text" id="comment" spellcheck="false" placeholder="Scrivi un commento..." oninput="grow(this)"></textarea>
+                            <span id="limit"></span>
+                        </div>
+                        <button id="comment" type="submit" class="flex-div"><img src="/static/img/comment.svg" class="commentIcon"></button>
+                    </div>
+                    <section class="comments">
+                        <% doc.comments.forEach((comment) => { %>
+                            <div class="comment-list" id="comments">
+                                <img class="pfp" src="/static/pfp/<%= comment.user.PFP_path %>">
+                                <div class="desc-name">
+                                    <h4><%= comment.user.username %><span class="views-days"><%= comment.date %></span></h4>
+                                    <p><%= comment.text %></p>
+                                </div>
+                                <% if (comment.user.username == user.username || doc.user.username == user.username) { %>
+                                    <button id="delete-comment" class="flex-div" _id="<%= comment._id %>">
+                                        <img src="/static/img/deleteacc.svg">
+                                    </button>
+                                <% } %>
+                            </div>
+                        <% }) %>
+                    </section>
+                     
+                </div>
+            </div>
+            <div class="right-sidebar">
+                <div class="side-video-list videos">
+                    <div>
+                        <% tumbSection.forEach(tumb => { %>
+                            <a href="/videos/<%= tumb.id %>" class="thumbnail-a" style="display: flex; margin-bottom: 1em; gap: .5em;">
+                                <div class="tumb-container" style="flex-basis: 50%">
+                                    <img class="thumbnail" src="/static/thumbnails/<%= tumb.thumbnail %>">
+                                </div>
+                                <p style="flex-basis: 50%"><%= tumb.title %></p>
+                            </a>   
+                        <% }) %>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

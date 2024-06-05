@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/css/root.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <script src="/static/js/profile.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+    <title><%= user.username %>'s profile</title>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left">
+            <a href="/"><img src="/static/img/bendatube.svg" class="logo"></a>
+        </div>
+        <div class="nav-left-mobile">
+            <a href="/"><img src="/static/img/home.svg" class="home-icon"></a>
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <form action="/" method="post">
+                    <input type="text" id="searchBar" placeholder="Cerca... (user: b1tch)" name="query" id="query" autocomplete="off" value="<%= query %>">
+                    <button class="search" type="submit"><img src="/static/img/search.svg"></button>
+                </form>
+            </div>
+        </div>
+        <div class="nav-right flex-div">
+            <button id="uploadButton" href="/upload">
+                <a href="/upload"></a>
+                <img class="upload-icon" src="/static/img/upload.svg">
+            </button>
+            <a class="user-profile flex-div" href="/profile"><img class="user-icon" src="/static/pfp/<%= user.PFP_path %> "><span><%= user.username %></span></a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1 class="profile-name">Ciao, <strong><%= user.username %></strong>!</h1>
+
+        <form class="modify-box" action="/profile" method="POST" enctype="multipart/form-data"> <!-- modify -->
+            <h1>Modifica il tuo profilo</h1>
+            <div class="info-box">
+                <div class="inputs">
+                    <div class="field-container">
+                        <span id="error" class="error"> <%= error %> </span>
+                        <div class="field">
+                            <input type="text" id="username" name="username" class="credentials" autocomplete="off" spellcheck="false" placeholder="Username" value="<%= user.username %>">
+                            <span id="limit"></span>
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <div class="field">
+                            <input type="password" id="password" name="password" class="credentials" placeholder="Password">
+                            <span id="limit"></span>
+                        </div>  
+                    </div>
+                    <input type="password" id="password2" name="password2" class="credentials" placeholder="Repeat Password">
+                </div>
+               <div class="pfp-selector">
+                    <span class="pfp-tips">Formati supportati: .png, .jpg, .jpeg e .gif.<br>CSS raccoglierà solo il quadrato centrale dell'imamgine, indipendentemente dalle sue proporzioni.</span>
+                    <img src="/static/pfp/<%= user.PFP_path %>" id="pfp-preview" alt="">
+                    <input type="file" name="pfp" id="pfp-input">
+                </div> 
+            </div>
+            <button type="submit" class="submit-modif" disabled>Salva le modifiche</button>
+        </form>
+
+        <div class="logout-delete-buttons flex-div">
+            <form action="/logout?_method=DELETE" method="POST">
+                <button type="submit" class="log-out"><img src="/static/img/logout.svg"></button>
+            </form>
+            <button type="submit" class="delete-acc"><img src="/static/img/deleteacc.svg"></button>
+        </div>
+    </div>
+
+    
+
+    <div class="delete-account">
+        <h1>💿 spiace molto, <%= user.username %>.</h1>
+        <p>Il tuo account verrà cestinato dal nostro database.</p>
+        <form action="/abort" method="POST">
+            <div>
+                <input type="checkbox" id="holdData" name="holdData">
+                <label for="holdData">Cancella dal sito tutti i miei video e tutti i miei commenti.</label>
+            </div>
+            <div class="delete-options">
+                <button type="submit" class="logOut">Cancellati.</button>
+                <a class="cancel-deletion">Annulla</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="blur"></div>
+</body>
+</html>

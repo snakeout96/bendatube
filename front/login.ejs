@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BendaTube | Login</title>
+    <link rel="stylesheet" href="/public/css/root.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/favicon-16x16.png">
+    <link rel="manifest" href="/public/img/site.webmanifest">
+    <script src="/public/login.js" defer></script>
+</head>
+<body>
+    <div class="logo">
+        <img src="/public/img/bendatube.svg">
+    </div>
+
+    <div class="box">
+        <form action="/login" method="POST">
+            <h1>Accedi</h1>
+            <div class="fields">
+                <span class="error" id="error">
+                    <% if (messages.error) { %> <%= messages.error %> <% } %>
+                </span>
+                <input type="text" id="username" name="username" class="credentials" autocomplete="off" spellcheck="false" placeholder="Username">
+                <input type="password" id="password" name="password" class="credentials" placeholder="Password">
+            </div>
+            
+            <div class="end-form">
+                <div class="remember-me">
+                    <label for="remember_me" class="remember">Ricordami
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <span class="checkmark"></span>
+                </div>
+                <a class="register" href="/register">Registrati</a>
+
+            </div>
+            <button type="submit" class="login">Log In</button>
+        </form>
+    </div>
+    
+    <footer>2022 - 2023 | BendaTube Team</footer>
+</body>
+</html>

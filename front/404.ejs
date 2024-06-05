@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/css/404.css">
+    <link rel="stylesheet" href="/static/css/root.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/site.webmanifest">
+    <title>404 :/</title>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left">
+            <a href="/"><img src="/static/img/bendatube.svg" class="logo"></a>
+        </div>
+        <div class="nav-left-mobile">
+            <a href="/"><img src="/static/img/home.svg" class="home-icon"></a>
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <form action="/" method="post">
+                    <input type="text" id="searchBar" placeholder="Cerca... (user: b1tch)" name="query" id="query" autocomplete="off" value="<%= query %>">
+                    <button class="search" type="submit"><img src="/static/img/search.svg"></button>
+                </form>
+            </div>
+        </div>
+        <div class="nav-right flex-div">
+            <button id="uploadButton" href="/upload">
+                <a href="/upload"></a>
+                <img class="upload-icon" src="/static/img/upload.svg">
+            </button>
+            <a class="user-profile flex-div" href="/profile"><img class="user-icon" src="/static/pfp/<%= user.PFP_path %>"><span><%= user.username %></span></a>
+        </div>
+    </nav>
+    
+    <div class="flex-div">
+        <h1 class="notfound">404</h1>
+    </div>
+    <div class="flex-div">
+        <h3 class="notfoundText">Pagina non trovata :/</h3>
+    </div>
+    <div class="flex-div">
+        <a class="goBack" href="/">Torna alla home</a>
+    </div>
+</body>
+</html>

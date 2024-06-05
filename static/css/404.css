@@ -1,0 +1,21 @@
+.notfound{
+    font-size: 150px;
+}
+.notfoundText{
+    font-size: 50px;
+}
+.goBack{
+    font-size: 25px;
+    transition: .4s;
+}
+.goBack:hover{
+    color: red;
+}
+@media only screen and (max-width: 600px){
+    .notfound{
+        font-size: 75px;
+    }
+    .notfoundText{
+        font-size: 30px;
+    }
+}
